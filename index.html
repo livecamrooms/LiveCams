@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chaturbate affiliate hub · clean links & API</title>
+  <meta name="description" content="Complete index of Chaturbate affiliate links, tools and API – curated for partners. Simple, fast and SEO ready.">
+  <meta name="keywords" content="chaturbate, affiliate, cams, adult, marketing, links, API">
+  <!-- open graph for social sharing (optional but good for SEO) -->
+  <meta property="og:title" content="Chaturbate affiliate hub">
+  <meta property="og:description" content="All affiliate links in one place – top rooms, full video modes, join pages, regions and live API.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://your-github-username.github.io/chaturbate-affiliate-index/">
+  <meta name="twitter:card" content="summary">
+  <style>
+    /* simple, beautiful, minimalistic design — master coder & seo friendly */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+      line-height: 1.5;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      background: linear-gradient(145deg, #1e293b, #3b3b5c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .subhead {
+      font-size: 1.2rem;
+      color: #475569;
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .api-notice {
+      background: #e6f0ff;
+      border-left: 4px solid #2563eb;
+      padding: 1rem 1.5rem;
+      border-radius: 0 1rem 1rem 0;
+      margin: 2rem 0 1rem;
+      font-size: 0.95rem;
+      display: inline-block;
+    }
+
+    .api-notice strong {
+      color: #1e40af;
+    }
+
+    hr {
+      border: none;
+      border-top: 2px dashed #cbd5e1;
+      margin: 2.5rem 0;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin: 2rem 0 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-title span {
+      background: #0f172a;
+      color: white;
+      font-size: 1rem;
+      padding: 0.2rem 0.9rem;
+      border-radius: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.2rem 1.2rem 1.5rem;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.02);
+      transition: all 0.15s ease;
+      border: 1px solid #f1f5f9;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 30px -10px rgba(0,100,200,0.15);
+      border-color: #b9d5f0;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #1e293b;
+      line-height: 1.4;
+    }
+
+    .card .url-wrapper {
+      background: #f1f5f9;
+      padding: 0.4rem 0.7rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      color: #334155;
+      margin: 0.8rem 0 1rem;
+      word-break: break-all;
+      border: 1px solid #e2e8f0;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+
+    .card .btn {
+      background: #0f172a;
+      color: white;
+      text-decoration: none;
+      padding: 0.6rem 1rem;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+      margin-top: auto;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .card .btn:hover {
+      background: #1e293b;
+    }
+
+    .card .btn i {
+      margin-right: 0.4rem;
+      font-style: normal;
+    }
+
+    /* small tag for variations */
+    .badge {
+      background: #f1f5f9;
+      color: #334155;
+      padding: 0.25rem 0.7rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      display: inline-block;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+      border: 1px solid #e2e8f0;
+    }
+
+    .badge-group {
+      margin: 0.5rem 0;
+    }
+
+    /* API box */
+    .api-box {
+      background: #0b1120;
+      color: #e2e8f0;
+      border-radius: 24px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .api-box h3 {
+      color: white;
+      font-size: 1.6rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .api-endpoint {
+      background: #1e293b;
+      padding: 1rem 1.5rem;
+      border-radius: 40px;
+      font-family: monospace;
+      font-size: 1rem;
+      word-break: break-all;
+      border: 1px solid #334155;
+      color: #bbd7fb;
+      margin: 1rem 0;
+    }
+
+    .api-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .api-flex a {
+      background: #2d3a4f;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background 0.1s;
+    }
+
+    .api-flex a:hover {
+      background: #3b4b64;
+    }
+
+    footer {
+      margin-top: 4rem;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.9rem;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 2rem;
+    }
+
+    .missing-note {
+      background: #fff8e5;
+      border-radius: 20px;
+      padding: 1rem 2rem;
+      color: #92400e;
+      border: 1px solid #fcd34d;
+      margin: 2rem 0 1rem;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>🔥 chaturbate · affiliate index</h1>
+    <div class="subhead">all tracking links, current top rooms, video modes & API – one clean page.<br>built for partners, loved by search engines.</div>
+    <div class="api-notice">
+      <strong>📡 live api available</strong> — use the JSON/XML endpoint to embed dynamic rooms. see section below.
+    </div>
+  </header>
+
+  <!-- ===== STATIC AFFILIATE LINKS (organised by category) ===== -->
+  <!-- (all URLs contain campaign=T2CSW&track=default as provided) -->
+
+  <!-- 1️⃣ CURRENT TOP ROOMS -->
+  <div class="section-title">
+    🎯 current top rooms <span>12 links</span>
+  </div>
+  <div class="grid">
+    <!-- manually listing each with exact name & url -->
+    <div class="card"><h3>Current Top Room</h3><div class="badge-group"><span class="badge">default</span></div><div class="url-wrapper">https://chaturbate.com/in/?tour=hr8m&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=hr8m&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Current Top Room: Couple</h3><div class="badge-group"><span class="badge">couple</span></div><div class="url-wrapper">https://chaturbate.com/in/?tour=43Qk&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=43Qk&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Current Top Room: Couple (without popup join)</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=yDHd&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=yDHd&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Current Top Room: Female</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=uhEc&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=uhEc&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Current Top Room: Female (without popup join)</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=6hnx&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=6hnx&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Current Top Room: Male</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=EyCi&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=EyCi&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Current Top Room: Male (without popup join)</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=m58x&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=m58x&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Current Top Room: Trans</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=2MTk&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=2MTk&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Current Top Room: Trans (without popup join)</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=w217&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=w217&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Current Top Room (without popup join form)</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=VKKA&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=VKKA&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+  </div>
+
+  <!-- 2️⃣ FULL VIDEO MODES -->
+  <div class="section-title">
+    🎬 full video modes <span>7 links</span>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Full Video Mode</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=dU9X&campaign=T2CSW&track=default&signup_notice=1</div><a class="btn" href="https://chaturbate.com/in/?tour=dU9X&campaign=T2CSW&track=default&signup_notice=1" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Full Video Mode: Couple</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=GORs&campaign=T2CSW&track=default&signup_notice=1</div><a class="btn" href="https://chaturbate.com/in/?tour=GORs&campaign=T2CSW&track=default&signup_notice=1" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Full Video Mode: Female</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=gLDS&campaign=T2CSW&track=default&signup_notice=1</div><a class="btn" href="https://chaturbate.com/in/?tour=gLDS&campaign=T2CSW&track=default&signup_notice=1" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Full Video Mode: Male</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=4xFT&campaign=T2CSW&track=default&signup_notice=1</div><a class="btn" href="https://chaturbate.com/in/?tour=4xFT&campaign=T2CSW&track=default&signup_notice=1" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Full Video Mode: Trans</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=4auy&campaign=T2CSW&track=default&signup_notice=1</div><a class="btn" href="https://chaturbate.com/in/?tour=4auy&campaign=T2CSW&track=default&signup_notice=1" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Full Video Mode: (Your Chat Room)</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=Limj&campaign=T2CSW&track=default&signup_notice=1&b=brandnew</div><a class="btn" href="https://chaturbate.com/in/?tour=Limj&campaign=T2CSW&track=default&signup_notice=1&b=brandnew" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+  </div>
+
+  <!-- 3️⃣ HOME PAGES (with/without popup) -->
+  <div class="section-title">
+    🏠 home pages <span>10 links</span>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Home Page</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=grq0&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=grq0&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Home Page: Couple</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=0G9g&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=0G9g&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Home Page: Couple (without popup)</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=DqyZ&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=DqyZ&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Home Page: Females</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=IsSO&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=IsSO&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Home Page: Females (without popup)</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=EuIR&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=EuIR&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Home Page: Males</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=R2Xc&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=R2Xc&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Home Page: Males (without popup)</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=YKzf&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=YKzf&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Home Page: Trans</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=khMd&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=khMd&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Home Page: Trans (without popup)</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=vj0T&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=vj0T&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Home Page (without popup join form)</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=IGtl&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=IGtl&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+  </div>
+
+  <!-- 4️⃣ JOIN PAGES + REDIRECTS -->
+  <div class="section-title">
+    📝 join pages & redirects <span>6 links</span>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Join Page</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=3Mc9&campaign=T2CSW&track=default&redirect_to_room=-welcomepage-</div><a class="btn" href="https://chaturbate.com/in/?tour=3Mc9&campaign=T2CSW&track=default&redirect_to_room=-welcomepage-" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Join Page → Couple Cams</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=JpRc&campaign=T2CSW&track=default&next=/couple-cams/</div><a class="btn" href="https://chaturbate.com/in/?tour=JpRc&campaign=T2CSW&track=default&next=/couple-cams/" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Join Page → Female Cams</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=JpRf&campaign=T2CSW&track=default&next=/female-cams/</div><a class="btn" href="https://chaturbate.com/in/?tour=JpRf&campaign=T2CSW&track=default&next=/female-cams/" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Join Page → Male Cams</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=JpRm&campaign=T2CSW&track=default&next=/male-cams/</div><a class="btn" href="https://chaturbate.com/in/?tour=JpRm&campaign=T2CSW&track=default&next=/male-cams/" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Join Page → Trans Cams</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=JpRt&campaign=T2CSW&track=default&next=/trans-cams/</div><a class="btn" href="https://chaturbate.com/in/?tour=JpRt&campaign=T2CSW&track=default&next=/trans-cams/" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+  </div>
+
+  <!-- 5️⃣ RANDOM ROOMS & REGIONS -->
+  <div class="section-title">
+    🎲 random & region cams <span>9 links</span>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Random Room: Couple</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=goZq&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=goZq&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Random Room: Female</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=41Ea&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=41Ea&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Random Room: Male</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=9rL0&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=9rL0&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Random Room: Trans</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=sxJR&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=sxJR&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Region: Asian Cams</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=AZcr&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=AZcr&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Region: Euro Russian Cams</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=ERcr&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=ERcr&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Region: North American Cams</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=NAcr&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=NAcr&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Region: Other Region Cams</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=ORcr&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=ORcr&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Region: South American Cams</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=SAcr&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=SAcr&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+  </div>
+
+  <!-- 6️⃣ OTHER (broadcaster, contest, affiliate program) -->
+  <div class="section-title">
+    📌 extras <span>3 links</span>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Broadcaster Signup Form</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=NwNd&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=NwNd&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>Contest Details</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=jb4g&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=jb4g&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+    <div class="card"><h3>The Affiliate Program</h3><div class="url-wrapper">https://chaturbate.com/in/?tour=07kX&campaign=T2CSW&track=default</div><a class="btn" href="https://chaturbate.com/in/?tour=07kX&campaign=T2CSW&track=default" target="_blank" rel="noopener"><i>🔗</i> visit link</a></div>
+  </div>
+
+  <!-- two links had missing tour codes (Go to Room / Join Page with custom room) — display as info -->
+  <div class="missing-note">
+    ⚠️ <strong>Two dynamic templates</strong> were listed without URL: “Go to Room (Current Top Room if offline)” and “Join Page and Redirect to Room”.<br>
+    They require a room name input – you can generate them by replacing <code>TOURCODE</code> in the base pattern, but codes were not provided. Contact your affiliate manager if needed.
+  </div>
+
+  <hr>
+
+  <!-- ===== API SECTION ===== -->
+  <div class="section-title" style="border-bottom-color:#2563eb;">
+    ☁️ live rooms API <span>JSON / XML / YAML</span>
+  </div>
+
+  <div class="api-box">
+    <h3>⚡ onlinerooms endpoint (geotargeted)</h3>
+    <p style="color:#adb5bd; margin-bottom:1.5rem;">Make one request per visitor. Returns list of rooms for iframe embedding. Replace <code>client_ip</code> with visitor IP.</p>
+
+    <div class="api-endpoint">
+      🔗 https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=T2CSW&client_ip=request_ip
+    </div>
+
+    <div class="api-flex">
+      <a href="https://chaturbate.com/affiliates/api/onlinerooms/?format=xml&wm=T2CSW" target="_blank" rel="noopener">📄 XML version</a>
+      <a href="https://chaturbate.com/affiliates/api/onlinerooms/?format=json&wm=T2CSW" target="_blank" rel="noopener">📦 JSON version</a>
+      <a href="https://chaturbate.com/affiliates/api/onlinerooms/?format=yaml&wm=T2CSW" target="_blank" rel="noopener">📃 YAML version</a>
+    </div>
+
+    <p style="margin-top:1.5rem; background:#1a2536; padding:0.8rem; border-radius:30px; font-size:0.9rem;">
+      💡 <strong>pro tip:</strong> use <code style="background:#0f172a;">&client_ip=VISITOR_IP</code> for geo-targeted results. Rooms are ready to embed via iframe.
+    </p>
+  </div>
+
+  <!-- footer with micro seo boost -->
+  <footer>
+    <p>© affiliate resource — all links use campaign <strong>T2CSW</strong> & track=default. <br>designed for search engines & human ease. last updated 2025.</p>
+    <p style="margin-top:0.5rem;">
+      <a href="#" style="color:#3b82f6;">back to top</a> 
+    </p>
+  </footer>
+
+</div> <!-- container -->
+</body>
+</html>
