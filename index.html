@@ -1,696 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Real-time Chaturbate top earners, live cam earnings stats &amp; streams. Watch the hottest performers earning $500–$5,000+/month right now.">
-    <title>Chaturbate Live Stats • Top Earners &amp; Real-Time Cams</title>
-    <meta property="og:title" content="Chaturbate Live Stats • Top Earners &amp; Real-Time Cams">
-    <meta property="og:description" content="See who's earning the most right now. 258k+ viewers online. Live cam earnings tracker.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://chaturbate.com">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
-        
-        :root {
-            --neon-pink: #ff00cc;
-        }
-        
-        .tail-container {
-            font-family: 'Inter', system_ui, sans-serif;
-        }
-        
-        .logo-font {
-            font-family: 'Space Grotesk', sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Performers</title>
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --card: #1e1e1e;
+      --text: #ffffff;
+      --accent: #ff4d4d;
+    }
 
-        .glass {
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-        }
+    body.light {
+      --bg: #f5f5f5;
+      --card: #ffffff;
+      --text: #111111;
+    }
 
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 0 30px -5px rgb(249 115 22 / 0.5);
-        }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
 
-        .neon-text {
-            text-shadow: 0 0 10px #ff00cc,
-                        0 0 20px #ff00cc;
-        }
+    header {
+      padding: 1rem;
+      text-align: center;
+      background: var(--card);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
 
-        .live-dot {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
+    input {
+      padding: 0.6rem;
+      width: 70%;
+      max-width: 400px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      margin-top: 0.5rem;
+    }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
+    .toggle {
+      margin-top: 0.5rem;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
 
-        .modal {
-            animation: modalPop 0.3s ease forwards;
-        }
-        
-        @keyframes modalPop {
-            from {
-                opacity: 0;
-                transform: scale(0.8) translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      padding: 1rem;
+    }
 
-        .thumbnail-container {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .thumbnail-container::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.6));
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        .card-hover:hover .thumbnail-container::after {
-            opacity: 1;
-        }
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      transition: transform 0.2s;
+    }
 
-        .stat-number {
-            font-variant-numeric: tabular-nums;
-        }
-    </style>
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .content {
+      padding: 0.8rem;
+    }
+
+    .username {
+      font-weight: bold;
+    }
+
+    .viewers {
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: red;
+      padding: 2px 6px;
+      font-size: 0.7rem;
+      border-radius: 6px;
+      margin-left: 5px;
+    }
+
+    .btn {
+      display: block;
+      margin-top: 0.6rem;
+      text-align: center;
+      background: var(--accent);
+      padding: 0.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    /* Skeleton */
+    .skeleton {
+      background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.2s infinite;
+      border-radius: 16px;
+      height: 220px;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+  </style>
 </head>
-<body class="tail-container bg-zinc-950 text-zinc-200">
-    <!-- HEADER -->
-    <header class="border-b border-white/10 bg-zinc-950 sticky top-0 z-50">
-        <div class="max-w-screen-2xl mx-auto">
-            <div class="flex items-center justify-between px-6 py-5">
-                <div class="flex items-center gap-x-3">
-                    <div class="w-9 h-9 bg-gradient-to-br from-pink-500 to-violet-500 rounded-2xl flex items-center justify-center text-white text-2xl font-black logo-font">C</div>
-                    <div>
-                        <span class="logo-font text-3xl font-semibold tracking-tighter neon-text">STATS</span>
-                    </div>
-                </div>
-                
-                <nav class="hidden md:flex items-center gap-x-8 text-sm font-medium">
-                    <a href="https://chaturbate.com/in/?tour=grq0&amp;campaign=T2CSW&amp;track=default" target="_blank" class="hover:text-pink-400 transition-colors">LIVE CAMS</a>
-                    <a href="https://chaturbate.com/in/?tour=hr8m&amp;campaign=T2CSW&amp;track=default" target="_blank" class="hover:text-pink-400 transition-colors">TOP EARNERS</a>
-                    <a href="https://chaturbate.com/in/?tour=NwNd&amp;campaign=T2CSW&amp;track=default" target="_blank" class="hover:text-pink-400 transition-colors">BECOME A MODEL</a>
-                    <a href="https://chaturbate.com/in/?tour=07kX&amp;campaign=T2CSW&amp;track=default" target="_blank" class="hover:text-pink-400 transition-colors">AFFILIATES</a>
-                </nav>
+<body>
 
-                <div class="flex items-center gap-x-4">
-                    <div class="flex items-center bg-emerald-500/10 text-emerald-400 text-xs font-mono px-3 py-1.5 rounded-3xl border border-emerald-500/30">
-                        <div class="w-2 h-2 bg-emerald-400 rounded-full live-dot mr-2"></div>
-                        258,472 ONLINE
-                    </div>
-                    <button onclick="window.location.href='https://chaturbate.com/in/?tour=07kX&amp;campaign=T2CSW&amp;track=default'" 
-                            class="bg-white text-zinc-900 hover:bg-amber-300 transition-all px-6 py-2.5 rounded-2xl text-sm font-semibold flex items-center gap-x-2">
-                        <i class="fa-solid fa-dollar-sign"></i>
-                        <span>EARN NOW</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
+<header>
+  <h2>🔥 Live Now</h2>
+  <input type="text" id="search" placeholder="Search performers...">
+  <div class="toggle" id="themeToggle">Toggle Light/Dark</div>
+</header>
 
-    <!-- HERO -->
-    <section class="relative overflow-hidden bg-zinc-950 pt-16 pb-12">
-        <div class="absolute inset-0 bg-[radial-gradient(at_top_right,#ff00cc10_0%,transparent_50%)]"></div>
-        
-        <div class="max-w-screen-2xl mx-auto px-6">
-            <div class="grid md:grid-cols-12 gap-12 items-center">
-                <div class="md:col-span-7">
-                    <div class="inline-flex items-center gap-x-2 bg-white/5 text-pink-400 text-xs tracking-[1px] font-medium px-5 py-2 rounded-3xl mb-6 border border-white/10">
-                        <i class="fa-solid fa-bolt"></i>
-                        LIVE RIGHT NOW
-                    </div>
-                    
-                    <h1 class="text-6xl md:text-7xl font-semibold tracking-tighter logo-font leading-none neon-text mb-4">
-                        SEE WHAT YOU'RE<br>MISSING
-                    </h1>
-                    <p class="text-2xl text-zinc-400 max-w-lg">
-                        The hottest Chaturbate performers are live <span class="text-pink-400">earning thousands</span> right now.
-                    </p>
-                    
-                    <div class="flex flex-wrap gap-4 mt-10">
-                        <button onclick="document.getElementById('live-section').scrollIntoView({behavior:'smooth'})" 
-                                class="bg-gradient-to-r from-pink-500 to-violet-600 hover:from-pink-600 hover:to-violet-700 transition-all px-10 py-6 rounded-3xl text-xl font-semibold flex items-center gap-x-3 shadow-2xl shadow-pink-500/30">
-                            <span>WATCH TOP PERFORMERS</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                        
-                        <button onclick="window.open('https://chaturbate.com/in/?tour=NwNd&amp;campaign=T2CSW&amp;track=default','_blank')" 
-                                class="border border-white/30 hover:border-white/60 transition-all px-8 py-6 rounded-3xl text-xl font-medium">
-                            BECOME A BROADCASTER
-                        </button>
-                    </div>
-                    
-                    <!-- SOCIAL PROOF -->
-                    <div class="mt-12 flex items-center gap-x-8 text-xs">
-                        <div class="flex -space-x-4">
-                            <div class="w-7 h-7 bg-zinc-800 border-2 border-zinc-950 rounded-2xl overflow-hidden"><img src="https://picsum.photos/id/64/64/64" class="w-full h-full object-cover"></div>
-                            <div class="w-7 h-7 bg-zinc-800 border-2 border-zinc-950 rounded-2xl overflow-hidden"><img src="https://picsum.photos/id/201/64/64" class="w-full h-full object-cover"></div>
-                            <div class="w-7 h-7 bg-zinc-800 border-2 border-zinc-950 rounded-2xl overflow-hidden"><img src="https://picsum.photos/id/29/64/64" class="w-full h-full object-cover"></div>
-                        </div>
-                        <div>
-                            <div class="text-emerald-400 font-medium">+12,459 joined in last hour</div>
-                            <div class="text-zinc-500 text-[10px]">Join the 1.2M+ members earning &amp; watching</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- HERO STATS BAR -->
-                <div class="md:col-span-5">
-                    <div class="glass border border-white/10 rounded-3xl p-8">
-                        <div class="grid grid-cols-3 gap-6 text-center">
-                            <div>
-                                <div id="stat-rooms" class="stat-number text-5xl font-semibold text-white tracking-tighter">10193</div>
-                                <div class="text-[10px] text-zinc-400 mt-1 tracking-widest">ROOMS TRACKED</div>
-                            </div>
-                            <div>
-                                <div id="stat-tips" class="stat-number text-5xl font-semibold text-white tracking-tighter">$35M</div>
-                                <div class="text-[10px] text-zinc-400 mt-1 tracking-widest">TIPS THIS MONTH</div>
-                            </div>
-                            <div>
-                                <div id="stat-viewers" class="stat-number text-5xl font-semibold text-white tracking-tighter">258k</div>
-                                <div class="text-[10px] text-zinc-400 mt-1 tracking-widest">VIEWERS LIVE</div>
-                            </div>
-                        </div>
-                        
-                        <div class="h-px bg-white/10 my-8"></div>
-                        
-                        <div class="flex justify-between items-center text-sm">
-                            <div class="flex items-center gap-x-2">
-                                <div class="px-4 py-2 bg-white/5 rounded-2xl text-pink-400 flex items-center gap-x-2 text-xs">
-                                    <i class="fa-solid fa-fire"></i>
-                                    <span>TOP EARNERS</span>
-                                </div>
-                            </div>
-                            <div onclick="document.getElementById('live-section').scrollIntoView({behavior:'smooth'})" 
-                                 class="flex items-center gap-x-1 text-pink-400 hover:text-pink-300 cursor-pointer text-xs font-medium">
-                                BROWSE ALL 
-                                <i class="fa-solid fa-chevron-right text-xs"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="grid" id="grid"></div>
 
-    <!-- LIVE TOP PERFORMERS -->
-    <section id="live-section" class="max-w-screen-2xl mx-auto px-6 py-16">
-        <div class="flex items-end justify-between mb-8">
-            <div>
-                <span class="px-4 py-1.5 bg-orange-500/10 text-orange-400 text-xs font-mono rounded-3xl">LIVE • UPDATING EVERY 15s</span>
-                <h2 class="text-4xl font-semibold tracking-tighter mt-3">Top Live Performers</h2>
-                <p class="text-zinc-400">Sorted by viewers • Real earnings estimated</p>
-            </div>
-            
-            <div class="hidden md:flex items-center gap-x-2 text-xs text-zinc-400">
-                <div class="flex items-center gap-x-1">
-                    <span class="inline-block w-2 h-2 bg-pink-500 rounded-full animate-pulse"></span>
-                    <span>HOT RIGHT NOW</span>
-                </div>
-            </div>
-        </div>
+<script>
+  const API_URL = "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=T2CSW&client_ip=request_ip";
+  let performers = [];
 
-        <!-- GRID -->
-        <div id="live-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-6 gap-6">
-            <!-- Populated by JS -->
-        </div>
+  function showSkeleton() {
+    const grid = document.getElementById('grid');
+    grid.innerHTML = '';
+    for (let i = 0; i < 10; i++) {
+      const skel = document.createElement('div');
+      skel.className = 'skeleton';
+      grid.appendChild(skel);
+    }
+  }
 
-        <div id="loading-placeholder" class="hidden text-center py-12 text-zinc-400">
-            <div class="animate-spin w-8 h-8 border-4 border-zinc-700 border-t-pink-500 rounded-full mx-auto mb-4"></div>
-            <p class="text-sm">Loading real-time Chaturbate data...</p>
-        </div>
-        
-        <div id="error-placeholder" class="hidden text-center py-12">
-            <p class="text-amber-400 text-sm mb-6">Live API temporarily unavailable. Showing demo data.</p>
-        </div>
-    </section>
+  async function fetchData() {
+    showSkeleton();
+    try {
+      const res = await fetch(API_URL);
+      const data = await res.json();
 
-    <!-- TOP MONTHLY EARNERS -->
-    <section id="earners-section" class="bg-zinc-900 py-16">
-        <div class="max-w-screen-2xl mx-auto px-6">
-            <div class="flex justify-between items-baseline mb-8">
-                <h2 class="text-4xl font-semibold tracking-tighter">Top Monthly Earners</h2>
-                <a href="https://chaturbate.com/in/?tour=hr8m&amp;campaign=T2CSW&amp;track=default" target="_blank" 
-                   class="text-pink-400 text-sm flex items-center gap-x-2 hover:underline">
-                    FULL LEADERBOARD 
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-            </div>
-            
-            <div class="glass rounded-3xl overflow-hidden border border-white/10">
-                <table class="w-full">
-                    <thead>
-                        <tr class="border-b border-white/10 text-xs text-zinc-400">
-                            <th class="text-left pl-8 py-6 font-normal">RANK</th>
-                            <th class="text-left py-6 font-normal">MODEL</th>
-                            <th class="text-right pr-8 py-6 font-normal">EST. EARNINGS</th>
-                        </tr>
-                    </thead>
-                    <tbody id="monthly-table" class="text-sm divide-y divide-white/10">
-                        <!-- Populated by JS -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
+      performers = data.results
+        .sort((a, b) => b.num_users - a.num_users)
+        .slice(0, 10);
 
-    <!-- DUAL CTAs -->
-    <section class="max-w-screen-2xl mx-auto px-6 py-20">
-        <div class="grid md:grid-cols-2 gap-8">
-            <!-- Performer CTA -->
-            <div onclick="window.open('https://chaturbate.com/in/?tour=NwNd&amp;campaign=T2CSW&amp;track=default','_blank')" 
-                 class="group cursor-pointer glass border border-white/10 hover:border-pink-400/60 transition-all rounded-3xl p-10 flex flex-col justify-between h-full">
-                <div>
-                    <div class="inline-flex items-center gap-2 bg-pink-500/10 text-pink-400 px-5 py-2 rounded-3xl text-xs mb-6">
-                        <i class="fa-solid fa-star"></i>
-                        NEW MODELS WELCOME
-                    </div>
-                    <h3 class="text-4xl font-semibold tracking-tight leading-none mb-4">Ready to turn your charisma<br>into cash?</h3>
-                    <p class="text-zinc-400 max-w-xs">Average top broadcasters earn $500 – $5,000 every single month. Start free today.</p>
-                </div>
-                <div class="mt-12 flex items-center justify-between">
-                    <div class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-violet-400">START EARNING</div>
-                    <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-3xl group-active:scale-95 transition-transform">💰</div>
-                </div>
-            </div>
-            
-            <!-- Affiliate CTA -->
-            <div onclick="window.open('https://chaturbate.com/in/?tour=07kX&amp;campaign=T2CSW&amp;track=default','_blank')" 
-                 class="group cursor-pointer glass border border-white/10 hover:border-violet-400/60 transition-all rounded-3xl p-10 flex flex-col justify-between h-full">
-                <div>
-                    <div class="inline-flex items-center gap-2 bg-violet-500/10 text-violet-400 px-5 py-2 rounded-3xl text-xs mb-6">
-                        <i class="fa-solid fa-link"></i>
-                        PASSIVE INCOME
-                    </div>
-                    <h3 class="text-4xl font-semibold tracking-tight leading-none mb-4">Turn traffic into lifetime<br>revenue</h3>
-                    <p class="text-zinc-400 max-w-xs">Earn up to 50% revshare on every token spent by your referrals. Forever.</p>
-                </div>
-                <div class="mt-12 flex items-center justify-between">
-                    <div class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-violet-400 to-pink-400">JOIN AFFILIATES</div>
-                    <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-3xl group-active:scale-95 transition-transform">📈</div>
-                </div>
-            </div>
-        </div>
-    </section>
+      render(performers);
+    } catch (err) {
+      document.getElementById('grid').innerHTML = "<p style='padding:1rem'>Failed to load data.</p>";
+    }
+  }
 
-    <!-- FOOTER -->
-    <footer class="bg-black py-16 border-t border-white/10">
-        <div class="max-w-screen-2xl mx-auto px-6 text-xs text-zinc-500">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-y-6">
-                <div class="flex items-center gap-x-8">
-                    <div class="logo-font text-2xl text-white/30">STATS</div>
-                    <div>© 2026 All rights reserved.</div>
-                </div>
-                
-                <div class="flex flex-wrap gap-x-8 gap-y-2 justify-center text-center">
-                    <a href="https://chaturbate.com" target="_blank" class="hover:text-zinc-300">Chaturbate.com</a>
-                    <a href="#" class="hover:text-zinc-300">Terms</a>
-                    <a href="#" class="hover:text-zinc-300">Privacy</a>
-                    <a href="#" class="hover:text-zinc-300">18+ Only</a>
-                </div>
-                
-                <div class="text-[10px] max-w-xs text-center md:text-right">
-                    Real-time data powered by Chaturbate Affiliates API.<br>
-                    This site is for informational and entertainment purposes only.
-                </div>
-            </div>
-        </div>
-    </footer>
+  function render(list) {
+    const grid = document.getElementById('grid');
+    grid.innerHTML = '';
 
-    <!-- WATCH LIVE MODAL -->
-    <div id="watch-modal" onclick="if(event.target.id==='watch-modal') closeModal()" 
-         class="hidden fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center p-4">
-        <div onclick="event.stopImmediatePropagation()" 
-             class="modal glass border border-white/20 w-full max-w-5xl rounded-3xl overflow-hidden relative">
-            
-            <!-- MODAL HEADER -->
-            <div class="flex items-center justify-between bg-black/60 px-8 py-5 border-b border-white/10">
-                <div class="flex items-center gap-x-3">
-                    <div id="modal-username" class="font-semibold text-xl"></div>
-                    <div id="modal-hd" class="hidden text-[10px] px-3 py-0.5 bg-emerald-400 text-black font-bold rounded">HD</div>
-                </div>
-                <button onclick="closeModal()" 
-                        class="w-9 h-9 flex items-center justify-center text-2xl leading-none text-zinc-400 hover:text-white">×</button>
-            </div>
-            
-            <!-- IFRAME CONTAINER -->
-            <div id="modal-iframe-container" class="aspect-video bg-black flex items-center justify-center">
-                <!-- iframe inserted here by JS -->
-            </div>
-            
-            <!-- MODAL FOOTER -->
-            <div class="px-8 py-6 bg-black/60 flex items-center justify-between text-xs">
-                <div class="flex items-center gap-x-6">
-                    <div id="modal-viewers" class="flex items-center gap-x-2"></div>
-                    <div id="modal-earnings" class="flex items-center gap-x-2"></div>
-                </div>
-                
-                <a id="modal-full-link" href="#" target="_blank"
-                   class="flex items-center gap-x-2 text-pink-400 hover:text-pink-300 text-xs font-medium">
-                    OPEN IN FULLSCREEN
-                    <i class="fa-solid fa-up-right-from-square"></i>
-                </a>
-            </div>
-        </div>
-    </div>
+    list.forEach((p, index) => {
+      const card = document.createElement('div');
+      card.className = 'card';
 
-    <script>
-        // Demo fallback data
-        const demoRooms = [
-            {
-                username: "your_dolls",
-                room_subject: "Squirt show with my best friend 💦",
-                image_url_360x270: "https://picsum.photos/id/1011/360/270",
-                num_users: 1847,
-                seconds_online: 12480,
-                gender: "f",
-                hd: true,
-                tags: ["squirt", "lesbian", "lovense"],
-                iframe_embed_revshare: `<iframe src="https://chaturbate.com/affiliate_iframe_embed?room=your_dolls&amp;wm=E8bhk" width="100%" height="100%" frameborder="0" scrolling="no" allow="autoplay; encrypted-media"></iframe>`
-            },
-            {
-                username: "_myaa",
-                room_subject: "Goal: new toy for my tight pussy 😈",
-                image_url_360x270: "https://picsum.photos/id/29/360/270",
-                num_users: 1324,
-                seconds_online: 8640,
-                gender: "f",
-                hd: true,
-                tags: ["teen", "anal", "bigboobs"],
-                iframe_embed_revshare: `<iframe src="https://chaturbate.com/affiliate_iframe_embed?room=_myaa&amp;wm=E8bhk" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>`
-            },
-            {
-                username: "bigass_queen",
-                room_subject: "Oil show + twerk for you 🍑",
-                image_url_360x270: "https://picsum.photos/id/201/360/270",
-                num_users: 987,
-                seconds_online: 7200,
-                gender: "f",
-                hd: false,
-                tags: ["ebony", "bigass"],
-                iframe_embed_revshare: `<iframe src="https://chaturbate.com/affiliate_iframe_embed?room=bigass_queen&amp;wm=E8bhk" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>`
-            }
-        ]
-        
-        // Hardcoded monthly earners
-        const monthlyEarners = [
-            { rank: 1, username: "your_dolls", earnings: "82450" },
-            { rank: 2, username: "_myaa", earnings: "67120" },
-            { rank: 3, username: "kinky_ella", earnings: "59340" },
-            { rank: 4, username: "sophie_rose", earnings: "51890" },
-            { rank: 5, username: "luna_skye", earnings: "47230" },
-            { rank: 6, username: "bigcock_daddy", earnings: "45100" },
-            { rank: 7, username: "emily_wet", earnings: "39870" },
-            { rank: 8, username: "jessica_hot", earnings: "36740" },
-            { rank: 9, username: "mia_anal", earnings: "33490" },
-            { rank: 10, username: "lexi_love", earnings: "31200" }
-        ]
-        
-        let allRooms = []
-        
-        // Animate number counters
-        function animateValue(id, start, end, duration) {
-            const obj = document.getElementById(id)
-            if (!obj) return
-            const range = end - start
-            let startTimestamp = null
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1)
-                const value = Math.floor(progress * range + start)
-                obj.innerHTML = value.toLocaleString('en-US')
-                if (progress < 1) {
-                    window.requestAnimationFrame(step)
-                } else {
-                    obj.innerHTML = end.toLocaleString('en-US')
-                }
-            }
-            window.requestAnimationFrame(step)
-        }
-        
-        function startStatAnimations() {
-            animateValue("stat-rooms", 8000, 10193, 2200)
-            animateValue("stat-tips", 28000000, 35000000, 1800)
-            animateValue("stat-viewers", 180000, 258000, 2500)
-        }
-        
-        // Format hours online
-        function formatHours(seconds) {
-            const hours = Math.floor(seconds / 3600)
-            return `${hours}h online`
-        }
-        
-        // Get gender icon
-        function getGenderIcon(gender) {
-            switch(gender) {
-                case 'f': return '👩'
-                case 'm': return '👨'
-                case 'c': return '👫'
-                case 't': return '🏳️‍⚧️'
-                default: return '👤'
-            }
-        }
-        
-        // Render single card
-        function createCard(room) {
-            const estEarnings = Math.round((room.num_users || 0) * 0.65)
-            const hours = formatHours(room.seconds_online || 3600)
-            const viewers = (room.num_users || 0).toLocaleString()
-            
-            const cardHTML = `
-                <div onclick="openWatchModal('${room.username}')" 
-                     class="card-hover group bg-zinc-900 border border-white/10 rounded-3xl overflow-hidden cursor-pointer">
-                    <div class="thumbnail-container">
-                        <img src="${room.image_url_360x270 || 'https://picsum.photos/id/237/360/270'}" 
-                             class="w-full aspect-video object-cover transition-all group-hover:scale-110" alt="${room.username}">
-                        <div class="absolute top-3 right-3 flex gap-x-1">
-                            ${room.hd || room.is_hd ? `<span class="text-[10px] bg-emerald-400 text-black font-bold px-2 py-px rounded">HD</span>` : ''}
-                            <span class="text-xs bg-black/70 px-2 py-px rounded flex items-center">${getGenderIcon(room.gender)}</span>
-                        </div>
-                    </div>
-                    
-                    <div class="p-4">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <div class="font-semibold text-lg leading-none">@${room.username}</div>
-                                <div class="text-xs text-zinc-400 mt-1 line-clamp-2 h-10">${room.room_subject || 'No description available'}</div>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center justify-between mt-6 text-xs">
-                            <div class="flex items-center gap-x-1.5">
-                                <span class="text-emerald-400">${viewers}</span>
-                                <span class="text-zinc-500">watching</span>
-                            </div>
-                            <div class="text-amber-400 font-medium">$${estEarnings}/hr</div>
-                        </div>
-                        
-                        <div class="mt-3 flex items-center justify-between text-[10px]">
-                            <div class="text-zinc-400">${hours}</div>
-                            <div class="flex gap-x-1">
-                                ${(room.tags && Array.isArray(room.tags) ? room.tags.slice(0,2) : []).map(tag => {
-                                    return `<span class="bg-zinc-800 text-zinc-400 px-2 py-px rounded">${tag}</span>`
-                                }).join('')}
-                            </div>
-                        </div>
-                        
-                        <button onclick="event.stopImmediatePropagation(); openWatchModal('${room.username}');" 
-                                class="mt-6 w-full bg-gradient-to-r from-pink-500 to-violet-500 py-4 text-sm font-semibold rounded-2xl flex items-center justify-center gap-x-2 hover:brightness-110 transition">
-                            <i class="fa-solid fa-play"></i>
-                            WATCH LIVE
-                        </button>
-                    </div>
-                </div>
-            `
-            return cardHTML
-        }
-        
-        // Render live grid
-        function renderLiveGrid(rooms) {
-            const container = document.getElementById('live-grid')
-            container.innerHTML = ''
-            
-            const topRooms = rooms.slice(0, 18)
-            
-            topRooms.forEach(room => {
-                const card = document.createElement('div')
-                card.innerHTML = createCard(room)
-                container.appendChild(card.firstElementChild)
-            })
-        }
-        
-        // Render monthly table with smart linking
-        function renderMonthlyTable() {
-            const tbody = document.getElementById('monthly-table')
-            tbody.innerHTML = ''
-            
-            const topEarnersLink = 'https://chaturbate.com/in/?tour=hr8m&campaign=T2CSW&track=default'
-            
-            monthlyEarners.forEach(entry => {
-                const isLive = allRooms.some(r => r.username.toLowerCase() === entry.username.toLowerCase())
-                let action = ''
-                
-                if (isLive) {
-                    action = `onclick="openWatchModal('${entry.username}'); event.stopImmediatePropagation();"`
-                } else if (allRooms.length > 0) {
-                    const topUsername = allRooms[0].username
-                    action = `onclick="openWatchModal('${topUsername}'); event.stopImmediatePropagation();"`
-                } else {
-                    action = `onclick="window.open('${topEarnersLink}', '_blank'); event.stopImmediatePropagation();"`
-                }
-                
-                const row = document.createElement('tr')
-                row.className = 'hover:bg-white/5 transition-colors'
-                row.innerHTML = `
-                    <td class="pl-8 py-6 font-mono text-pink-400">#${entry.rank}</td>
-                    <td class="py-6 font-medium ${isLive || allRooms.length > 0 ? 'cursor-pointer hover:text-pink-400' : ''}" ${action}>@${entry.username}</td>
-                    <td class="pr-8 py-6 text-right font-semibold text-emerald-400">$${parseInt(entry.earnings).toLocaleString()}</td>
-                `
-                tbody.appendChild(row)
-            })
-        }
-        
-        // Fetch real data
-        async function fetchLiveRooms() {
-            const loading = document.getElementById('loading-placeholder')
-            const errorDiv = document.getElementById('error-placeholder')
-            const grid = document.getElementById('live-grid')
-            
-            loading.classList.remove('hidden')
-            grid.classList.add('hidden')
-            
-            try {
-                const response = await fetch('https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=E8bhk&format=json&limit=48')
-                
-                if (!response.ok) throw new Error('API error')
-                
-                let data = await response.json()
-                
-                if (!Array.isArray(data)) data = []
-                
-                data.sort((a, b) => (b.num_users || 0) - (a.num_users || 0))
-                
-                allRooms = data
-                
-                renderLiveGrid(allRooms)
-                renderMonthlyTable()
-                
-                loading.classList.add('hidden')
-                grid.classList.remove('hidden')
-                errorDiv.classList.add('hidden')
-                
-            } catch(e) {
-                console.warn('Live API unavailable → using demo data', e)
-                allRooms = demoRooms
-                renderLiveGrid(allRooms)
-                renderMonthlyTable()
-                
-                loading.classList.add('hidden')
-                grid.classList.remove('hidden')
-                errorDiv.classList.remove('hidden')
-            }
-        }
-        
-        // Modal controls
-        let currentRoom = null
-        
-        function openWatchModal(username) {
-            const room = allRooms.find(r => r.username === username)
-            if (!room) {
-                window.open('https://chaturbate.com/in/?tour=hr8m&campaign=T2CSW&track=default', '_blank')
-                return
-            }
-            
-            currentRoom = room
-            
-            document.getElementById('modal-username').textContent = `@${room.username}`
-            
-            const hdBadge = document.getElementById('modal-hd')
-            if (room.hd || room.is_hd) {
-                hdBadge.classList.remove('hidden')
-            } else {
-                hdBadge.classList.add('hidden')
-            }
-            
-            const viewersEl = document.getElementById('modal-viewers')
-            viewersEl.innerHTML = `
-                <span class="text-emerald-400 font-semibold">${(room.num_users || 0).toLocaleString()}</span>
-                <span class="text-zinc-400">watching now</span>
-            `
-            
-            const est = Math.round((room.num_users || 0) * 0.65)
-            const earningsEl = document.getElementById('modal-earnings')
-            earningsEl.innerHTML = `
-                <span class="font-medium">EST. $${est}/hr</span>
-            `
-            
-            const container = document.getElementById('modal-iframe-container')
-            container.innerHTML = room.iframe_embed_revshare || `
-                <div class="text-center p-12">
-                    <p class="text-zinc-400">Live stream embed would appear here</p>
-                    <p class="text-xs mt-4 text-pink-400">@${room.username} is live!</p>
-                </div>
-            `
-            
-            document.getElementById('watch-modal').classList.remove('hidden')
-            document.getElementById('watch-modal').classList.add('flex')
-            document.body.style.overflow = 'hidden'
-        }
-        
-        function closeModal() {
-            const modal = document.getElementById('watch-modal')
-            modal.classList.add('hidden')
-            modal.classList.remove('flex')
-            document.body.style.overflow = 'visible'
-            const container = document.getElementById('modal-iframe-container')
-            container.innerHTML = ''
-        }
-        
-        // Keyboard escape
-        function handleEscape(e) {
-            if (e.key === "Escape") {
-                const modal = document.getElementById('watch-modal')
-                if (!modal.classList.contains('hidden')) closeModal()
-            }
-        }
-        
-        // Main initialization
-        function init() {
-            startStatAnimations()
-            renderMonthlyTable()
-            fetchLiveRooms()
-            
-            document.addEventListener('keydown', handleEscape)
-            
-            setInterval(() => {
-                if (document.visibilityState === 'visible') {
-                    fetchLiveRooms()
-                }
-            }, 25000)
-            
-            console.log('%c✅ Chaturbate Stats ready. Real-time data loaded.', 'color:#ff00cc; font-family:monospace')
-        }
-        
-        window.onload = init
-    </script>
+      const trending = index < 3 ? "<span class='badge'>🔥 Trending</span>" : "";
+
+      card.innerHTML = `
+        <img loading="lazy" src="${p.image_url}" alt="${p.username}">
+        <div class="content">
+          <div class="username">${p.username} ${trending}</div>
+          <div class="viewers">👁 ${p.num_users} watching <span class="badge">LIVE</span></div>
+          <a class="btn" href="https://chaturbate.com/${p.username}/?wm=T2CSW" target="_blank">Watch Now</a>
+        </div>
+      `;
+
+      grid.appendChild(card);
+    });
+  }
+
+  document.getElementById('search').addEventListener('input', (e) => {
+    const value = e.target.value.toLowerCase();
+    const filtered = performers.filter(p =>
+      p.username.toLowerCase().includes(value) ||
+      (p.tags && p.tags.join(' ').toLowerCase().includes(value))
+    );
+    render(filtered);
+  });
+
+  // Auto-refresh every 45 seconds
+  setInterval(fetchData, 45000);
+
+  // Theme toggle
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    document.body.classList.toggle('light');
+  });
+
+  fetchData();
+</script>
+
 </body>
 </html>
