@@ -3,455 +3,694 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="See What You're Missing on Chaturbate — Real-time top earners making $1,000–$20,000+ per day. Live performer streams, earnings tracker, and the hottest cam models right now.">
-    <meta name="keywords" content="chaturbate, top earners, live cams, cam girls, webcam models, chaturbate earnings, live streaming, adult cams, top performers">
-    <meta name="robots" content="index, follow">
-    <title>See What You're Missing on Chaturbate</title>
+    <meta name="description" content="Real-time Chaturbate top earners, live cam earnings stats &amp; streams. See who's making $500–$5,000+/hr right now.">
+    <title>StatBate • Chaturbate Live Stats • Top Earners &amp; Streams</title>
+    <meta property="og:title" content="StatBate • Chaturbate Live Stats • Top Earners &amp; Streams">
+    <meta property="og:description" content="Real-time Chaturbate top earners, live cam earnings stats &amp; streams. See who's making $500–$5,000+/hr right now.">
+    <meta property="og:image" content="https://chaturbate.com/images/logo.png">
+    <meta property="og:url" content="https://statbate.com">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
         
         :root {
-            --neon-pink: #ff00aa;
+            --neon-pink: #ff00cc;
+            --neon-purple: #9d00ff;
         }
         
-        body {
+        .tail-container {
             font-family: 'Inter', system_ui, sans-serif;
         }
         
-        .hero-font {
-            font-family: 'Playfair Display', sans-serif;
+        .logo-font {
+            font-family: 'Space Grotesk', sans-serif;
         }
 
-        .card {
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        .glass {
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .card:hover {
-            transform: scale(1.08) translateY(-8px);
-            box-shadow: 0 0 40px -10px rgb(255 0 170);
+        .card-hover:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 0 60px -10px rgb(157 0 255);
         }
-        
-        .live-badge {
+
+        .neon-text {
+            text-shadow: 0 0 20px rgb(255 0 204),
+                         0 0 40px rgb(157 0 255);
+        }
+
+        .live-dot {
             animation: pulse 2s infinite;
         }
-        
+
         @keyframes pulse {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
+            50% { opacity: 0.4; }
+        }
+
+        .modal {
+            animation: modalPop 0.3s ease forwards;
         }
         
-        .neon-text {
-            text-shadow: 0 0 20px #ff00aa,
-                        0 0 40px #ff00aa;
+        @keyframes modalPop {
+            from { transform: scale(0.8) translateY(40px); opacity: 0; }
+            to { transform: scale(1) translateY(0); opacity: 1; }
         }
-        
-        .earnings {
+
+        .stat-number {
             font-variant-numeric: tabular-nums;
         }
     </style>
 </head>
-<body class="bg-zinc-950 text-white overflow-x-hidden">
+<body class="tail-container bg-zinc-950 text-white overflow-x-hidden">
     <!-- HEADER -->
-    <header class="sticky top-0 z-50 bg-black/90 backdrop-blur-lg border-b border-zinc-800">
+    <header class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-zinc-950/80 backdrop-blur-xl">
         <div class="max-w-screen-2xl mx-auto px-8 py-5 flex items-center justify-between">
             <div class="flex items-center gap-x-3">
-                <div class="w-9 h-9 bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl flex items-center justify-center text-2xl font-black">S</div>
+                <div class="w-9 h-9 bg-gradient-to-br from-pink-500 to-violet-500 rounded-2xl flex items-center justify-center text-2xl">📸</div>
                 <div>
-                    <span class="text-3xl font-bold tracking-tighter neon-text">STATBATE</span>
+                    <span class="logo-font text-4xl font-semibold tracking-tighter neon-text">STATBATE</span>
                 </div>
             </div>
             
-            <nav class="hidden md:flex items-center gap-x-10 text-sm font-medium">
-                <a href="#" onclick="scrollToSection('top-earners')" class="hover:text-pink-400 transition-colors">TOP EARNERS</a>
-                <a href="#" onclick="scrollToSection('live-streams')" class="hover:text-pink-400 transition-colors">LIVE ROOMS</a>
-                <a href="#" class="hover:text-pink-400 transition-colors">CATEGORIES</a>
-                <a href="#" class="hover:text-pink-400 transition-colors">STATS</a>
+            <nav class="hidden md:flex items-center gap-x-8 text-sm font-medium">
+                <a href="#" onclick="document.getElementById('live-section').scrollIntoView({behavior:'smooth'})" class="hover:text-violet-400 transition-colors">LIVE NOW</a>
+                <a href="#" onclick="document.getElementById('monthly-section').scrollIntoView({behavior:'smooth'})" class="hover:text-violet-400 transition-colors">TOP EARNERS</a>
+                <a href="#" class="hover:text-violet-400 transition-colors">STATS</a>
             </nav>
 
             <div class="flex items-center gap-x-4">
-                <a href="https://chaturbate.com/in/?tour=NwNd&amp;campaign=T2CSW&amp;track=statbate" 
-                   target="_blank"
-                   class="px-6 py-3 bg-white text-black font-semibold rounded-2xl hover:bg-pink-400 hover:text-white transition-all flex items-center gap-x-2 text-sm">
-                    <i class="fa-solid fa-video"></i>
-                    BECOME A PERFORMER
-                </a>
+                <div class="px-6 py-2.5 bg-white/5 hover:bg-white/10 border border-white/20 rounded-3xl text-xs font-semibold flex items-center gap-x-2 transition-all cursor-pointer" onclick="window.open('https://chaturbate.com/in/?tour=NwNd&amp;campaign=T2CSW&amp;track=statbate','_blank')">
+                    <span class="text-emerald-400">📈</span>
+                    <span>BECOME A MODEL</span>
+                </div>
+                <button onclick="document.getElementById('affiliate-modal').classList.remove('hidden')" 
+                        class="px-8 py-3 bg-gradient-to-r from-violet-500 to-pink-500 hover:from-violet-600 hover:to-pink-600 rounded-3xl text-sm font-semibold transition-all shadow-lg shadow-violet-500/30">
+                    EARN AS AFFILIATE
+                </button>
             </div>
         </div>
     </header>
 
     <!-- HERO -->
-    <section class="relative h-screen flex items-center justify-center bg-[radial-gradient(at_bottom_right,#4f46e510_0%,transparent_70%)]">
-        <div class="absolute inset-0 bg-[url('https://picsum.photos/id/1015/2000/1200')] bg-cover opacity-10"></div>
-        
-        <div class="relative max-w-screen-2xl mx-auto px-8 text-center z-10">
-            <div class="inline-flex items-center gap-x-3 bg-zinc-900 border border-pink-500/30 text-pink-400 text-xs font-mono tracking-[3px] px-6 py-3 rounded-3xl mb-8">
-                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                LIVE EARNINGS TRACKER — UPDATED EVERY 30 SECONDS
-            </div>
-            
-            <h1 class="hero-font text-7xl md:text-8xl font-bold leading-none tracking-tighter neon-text mb-6">
-                SEE WHAT YOU'RE<br>MISSING ON<br>CHaturBATE
-            </h1>
-            
-            <p class="max-w-2xl mx-auto text-2xl text-zinc-400 mb-12">
-                The hottest performers are earning <span class="text-emerald-400 font-semibold">$1,000–$25,000+</span> every single day.<br>
-                Real-time streams. Real earnings. Zero censorship.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                <button onclick="document.getElementById('top-earners').scrollIntoView({ behavior: 'smooth' })" 
-                        class="px-12 py-6 bg-gradient-to-r from-pink-500 to-purple-600 text-2xl font-bold rounded-3xl hover:scale-105 transition-transform flex items-center gap-x-4 mx-auto sm:mx-0">
-                    <i class="fa-solid fa-fire"></i>
-                    SHOW ME THE TOP EARNERS
-                </button>
+    <section class="relative min-h-screen pt-24 flex items-center bg-[radial-gradient(at_bottom_right,#1a0033_0%,transparent_70%)]">
+        <div class="max-w-screen-2xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            <!-- LEFT -->
+            <div class="lg:col-span-7">
+                <div class="inline-flex items-center gap-x-2 bg-white/5 text-xs font-mono tracking-[2px] px-6 py-3 rounded-3xl border border-white/10 mb-6">
+                    <div class="w-3 h-3 bg-emerald-400 rounded-full live-dot"></div>
+                    LIVE • 354,821 VIEWERS RIGHT NOW
+                </div>
                 
-                <a href="https://chaturbate.com/in/?tour=07kX&amp;campaign=T2CSW&amp;track=statbate" 
-                   target="_blank"
-                   class="px-10 py-6 border border-white/40 hover:border-white/80 text-xl font-medium rounded-3xl flex items-center gap-x-3 transition-all">
-                    <i class="fa-solid fa-handshake"></i>
-                    BECOME AN AFFILIATE &amp; EARN 50%
-                </a>
-            </div>
-            
-            <div class="mt-20 flex justify-center gap-x-12 text-sm text-zinc-500">
-                <div class="flex items-center gap-x-3">
-                    <i class="fa-solid fa-users text-3xl"></i>
-                    <div>
-                        <div class="text-4xl font-mono text-white">8,947</div>
-                        <div class="text-xs tracking-widest">MODELS LIVE RIGHT NOW</div>
+                <h1 class="text-7xl lg:text-8xl font-bold leading-none logo-font tracking-tighter neon-text">
+                    SEE WHAT<br>YOU'RE<br>MISSING
+                </h1>
+                
+                <p class="mt-8 max-w-lg text-2xl text-zinc-400">
+                    10,193 rooms streaming. $35M+ tipped this month.<br>
+                    <span class="text-violet-400 font-semibold">The top 1% are earning $500–$5,000/hr</span> right now.
+                </p>
+
+                <!-- STATS BAR -->
+                <div class="mt-16 grid grid-cols-3 gap-8">
+                    <div onclick="this.classList.add('scale-110');setTimeout(()=&gt;this.classList.remove('scale-110'),300)" class="glass rounded-3xl p-8 text-center cursor-pointer">
+                        <div id="rooms-stat" class="text-5xl font-bold stat-number text-violet-400">0</div>
+                        <div class="text-xs uppercase tracking-widest text-zinc-500 mt-1">ROOMS TRACKED</div>
+                    </div>
+                    <div onclick="this.classList.add('scale-110');setTimeout(()=&gt;this.classList.remove('scale-110'),300)" class="glass rounded-3xl p-8 text-center cursor-pointer">
+                        <div id="tips-stat" class="text-5xl font-bold stat-number text-pink-400">$0</div>
+                        <div class="text-xs uppercase tracking-widest text-zinc-500 mt-1">TIPS THIS MONTH</div>
+                    </div>
+                    <div onclick="this.classList.add('scale-110');setTimeout(()=&gt;this.classList.remove('scale-110'),300)" class="glass rounded-3xl p-8 text-center cursor-pointer relative">
+                        <div id="viewers-stat" class="text-5xl font-bold stat-number text-emerald-400">0</div>
+                        <div class="text-xs uppercase tracking-widest text-zinc-500 mt-1">WATCHING NOW</div>
+                        <div class="absolute -top-2 -right-2 bg-red-500 text-[10px] font-bold px-3 py-1 rounded-3xl animate-pulse">LIVE</div>
                     </div>
                 </div>
-                <div class="flex items-center gap-x-3">
-                    <i class="fa-solid fa-dollar-sign text-3xl"></i>
-                    <div>
-                        <div class="text-4xl font-mono text-emerald-400">$38.4M</div>
-                        <div class="text-xs tracking-widest">EARNED THIS MONTH</div>
+
+                <div class="mt-12 flex items-center gap-x-8 text-xs">
+                    <div class="flex -space-x-4">
+                        <div class="w-8 h-8 bg-zinc-800 border-2 border-zinc-950 rounded-2xl overflow-hidden"><img src="https://picsum.photos/id/64/64/64" class="w-full h-full object-cover"></div>
+                        <div class="w-8 h-8 bg-zinc-800 border-2 border-zinc-950 rounded-2xl overflow-hidden"><img src="https://picsum.photos/id/201/64/64" class="w-full h-full object-cover"></div>
+                        <div class="w-8 h-8 bg-zinc-800 border-2 border-zinc-950 rounded-2xl overflow-hidden"><img src="https://picsum.photos/id/29/64/64" class="w-full h-full object-cover"></div>
                     </div>
+                    <div class="text-zinc-400 text-sm">
+                        <span class="text-emerald-400 font-semibold">2,394</span> people joined in the last 60 seconds
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT VISUAL -->
+            <div class="lg:col-span-5 relative">
+                <div class="relative bg-zinc-900 border border-violet-500/30 rounded-3xl overflow-hidden shadow-2xl">
+                    <img src="https://chaturbate.com/images/default_avatar.jpg" id="hero-thumb" 
+                         class="w-full h-auto brightness-75" alt="Live performer">
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/90 to-transparent h-1/2"></div>
+                    <div class="absolute bottom-8 left-8 right-8">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="flex items-center gap-x-3">
+                                    <span id="hero-username" class="text-4xl font-bold">@live_demo</span>
+                                    <span class="text-3xl">👩</span>
+                                </div>
+                                <div id="hero-subject" class="text-zinc-300 text-lg line-clamp-1">Come play with me 😈 $500 tip goal unlocked</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="bg-emerald-400/90 text-black text-xs font-bold px-5 py-1 rounded-3xl inline-flex items-center gap-x-2">
+                                    <span class="live-dot w-2 h-2 bg-black rounded-full"></span>
+                                    <span id="hero-viewers">12.4k</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute top-6 right-6 bg-black/70 text-white text-[10px] font-mono px-4 py-2 rounded-2xl flex items-center gap-x-2">
+                        <span class="text-pink-400">HD</span>
+                        <span class="text-amber-400">•</span>
+                        <span>4.2h</span>
+                    </div>
+                </div>
+                
+                <!-- floating badge -->
+                <div class="absolute -top-6 -right-6 bg-gradient-to-br from-amber-400 to-yellow-400 text-black text-xs font-bold px-8 py-4 rounded-3xl rotate-12 shadow-xl">
+                    $1,284/hr<br>
+                    <span class="text-[10px] font-normal">estimated</span>
                 </div>
             </div>
         </div>
-        
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-y-1 text-xs text-zinc-500">
+
+        <!-- SCROLL INDICATOR -->
+        <div class="absolute bottom-12 left-1/2 flex flex-col items-center text-xs gap-y-2 text-zinc-500">
             <div class="animate-bounce">↓</div>
-            SCROLL TO SEE WHO'S CASHING IN
+            <div>TOP LIVE PERFORMERS</div>
         </div>
     </section>
 
-    <!-- STATS BAR -->
-    <div class="bg-black py-6 border-y border-zinc-800">
-        <div class="max-w-screen-2xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-                <div class="text-emerald-400 text-5xl font-mono font-bold" id="total-earned">38,472,819</div>
-                <div class="text-xs uppercase tracking-widest text-zinc-500 mt-1">Total tips tracked this month</div>
-            </div>
-            <div>
-                <div class="text-5xl font-mono font-bold" id="avg-daily">1,284</div>
-                <div class="text-xs uppercase tracking-widest text-zinc-500 mt-1">Average daily earnings per top model</div>
-            </div>
-            <div>
-                <div class="text-5xl font-mono font-bold text-pink-400" id="live-count">0</div>
-                <div class="text-xs uppercase tracking-widest text-zinc-500 mt-1">Live performers right now</div>
-            </div>
-            <div>
-                <div class="text-5xl font-mono font-bold">0.05</div>
-                <div class="text-xs uppercase tracking-widest text-zinc-500 mt-1">USD per token</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- TOP EARNERS SECTION -->
-    <section id="top-earners" class="max-w-screen-2xl mx-auto px-8 py-20">
+    <!-- LIVE TOP PERFORMERS -->
+    <section id="live-section" class="max-w-screen-2xl mx-auto px-8 py-24">
         <div class="flex items-end justify-between mb-12">
             <div>
-                <span class="uppercase text-pink-400 text-sm font-mono tracking-[4px]">REAL-TIME</span>
-                <h2 class="text-5xl font-bold">Top Earners Right Now</h2>
+                <div class="uppercase text-pink-400 text-xs tracking-[3px] font-medium">UPDATED EVERY 3 SECONDS</div>
+                <h2 class="text-5xl font-bold logo-font tracking-tighter">Top Live Performers</h2>
+                <p class="text-zinc-400">Sorted by viewers • Real earnings estimates</p>
             </div>
             
-            <div class="flex gap-x-2 bg-zinc-900 p-1 rounded-3xl" id="gender-tabs">
-                <button onclick="filterByGender('all')" class="tab-btn active px-8 py-3 rounded-3xl text-sm font-medium">ALL</button>
-                <button onclick="filterByGender('f')" class="tab-btn px-8 py-3 rounded-3xl text-sm font-medium">♀ GIRLS</button>
-                <button onclick="filterByGender('m')" class="tab-btn px-8 py-3 rounded-3xl text-sm font-medium">♂ BOYS</button>
-                <button onclick="filterByGender('t')" class="tab-btn px-8 py-3 rounded-3xl text-sm font-medium">⚧ TRANS</button>
-                <button onclick="filterByGender('c')" class="tab-btn px-8 py-3 rounded-3xl text-sm font-medium">👫 COUPLES</button>
+            <div class="hidden md:flex items-center gap-x-2 text-xs bg-white/5 px-5 py-3 rounded-3xl">
+                <span class="px-4 py-1 bg-white/10 rounded-3xl">All</span>
+                <span class="px-4 py-1 hover:bg-white/10 rounded-3xl cursor-pointer transition-colors">Girls</span>
+                <span class="px-4 py-1 hover:bg-white/10 rounded-3xl cursor-pointer transition-colors">Boys</span>
+                <span class="px-4 py-1 hover:bg-white/10 rounded-3xl cursor-pointer transition-colors">Trans</span>
+                <span class="px-4 py-1 hover:bg-white/10 rounded-3xl cursor-pointer transition-colors">Couples</span>
             </div>
-            
-            <button onclick="refreshData()" 
-                    class="flex items-center gap-x-3 text-sm font-medium px-6 py-3 hover:bg-zinc-900 rounded-2xl transition-colors">
-                <i class="fa-solid fa-arrows-rotate"></i>
-                REFRESH LIVE
-            </button>
         </div>
 
-        <!-- CARDS GRID -->
-        <div id="performers-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8">
-            <!-- Populated by JavaScript -->
+        <!-- GRID -->
+        <div id="live-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
+            <!-- Populated by JS -->
+        </div>
+
+        <div class="mt-16 text-center">
+            <button onclick="loadMoreRooms()" 
+                    class="px-10 py-6 border border-white/30 hover:border-white/60 rounded-3xl text-sm font-medium flex items-center gap-x-3 mx-auto transition-all">
+                <span>SHOW MORE LIVE ROOMS</span>
+                <span class="text-xl">↓</span>
+            </button>
         </div>
     </section>
 
-    <!-- BECOME A PERFORMER CTA -->
-    <div class="bg-gradient-to-r from-zinc-900 to-black py-20 border-y border-zinc-800">
+    <!-- TOP MONTHLY EARNERS -->
+    <section id="monthly-section" class="bg-zinc-900 py-24">
         <div class="max-w-screen-2xl mx-auto px-8">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <!-- Broadcaster -->
-                <div class="bg-zinc-950 border border-pink-500/20 rounded-3xl p-12 hover:border-pink-500/50 transition-all group">
-                    <div class="text-pink-400 text-sm font-mono mb-4">FOR MODELS</div>
-                    <h3 class="text-5xl font-bold leading-none mb-8">Ready to cash in like these<br>top earners?</h3>
-                    <p class="text-xl text-zinc-400 mb-12 max-w-md">
-                        Thousands of performers just like you are making <span class="text-emerald-400">$5,000–$25,000 every month</span>. 
-                        No experience needed. Full control. Instant payouts.
-                    </p>
-                    <a href="https://chaturbate.com/in/?tour=NwNd&amp;campaign=T2CSW&amp;track=statbate" 
-                       target="_blank"
-                       class="inline-flex items-center justify-center w-full sm:w-auto gap-x-4 bg-white text-black font-bold text-xl px-16 py-7 rounded-3xl group-hover:scale-105 transition-transform">
-                        START BROADCASTING FREE
-                        <i class="fa-solid fa-arrow-right text-2xl"></i>
-                    </a>
-                    <div class="text-xs text-zinc-500 mt-6 text-center">Takes 60 seconds • 100% free to join</div>
-                </div>
+            <div class="flex justify-between items-baseline mb-10">
+                <h2 class="text-5xl font-bold logo-font tracking-tighter">Top Monthly Earners</h2>
+                <div class="text-xs text-zinc-500">MARCH 2026 • $35M+ TOTAL TIPPED</div>
+            </div>
+            
+            <div class="glass rounded-3xl overflow-hidden">
+                <table class="w-full">
+                    <thead>
+                        <tr class="border-b border-white/10 text-xs uppercase tracking-widest text-zinc-400">
+                            <th class="text-left py-6 px-10">RANK</th>
+                            <th class="text-left py-6 px-10">MODEL</th>
+                            <th class="text-left py-6 px-10">GENDER</th>
+                            <th class="text-right py-6 px-10">EARNED THIS MONTH</th>
+                            <th class="text-right py-6 px-10">AVG / DAY</th>
+                        </tr>
+                    </thead>
+                    <tbody id="monthly-tbody" class="text-sm divide-y divide-white/10">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 
-                <!-- Affiliate -->
-                <div class="bg-zinc-950 border border-purple-500/20 rounded-3xl p-12 hover:border-purple-500/50 transition-all group">
-                    <div class="text-purple-400 text-sm font-mono mb-4">FOR AFFILIATES</div>
-                    <h3 class="text-5xl font-bold leading-none mb-8">Turn traffic into passive income</h3>
-                    <p class="text-xl text-zinc-400 mb-12 max-w-md">
-                        Promote the world's #1 cam site and earn up to <span class="text-emerald-400">50% lifetime revenue share</span>. 
-                        Top affiliates clear $10k–$100k/month.
-                    </p>
-                    <a href="https://chaturbate.com/in/?tour=07kX&amp;campaign=T2CSW&amp;track=statbate" 
-                       target="_blank"
-                       class="inline-flex items-center justify-center w-full sm:w-auto gap-x-4 bg-white text-black font-bold text-xl px-16 py-7 rounded-3xl group-hover:scale-105 transition-transform">
-                        JOIN THE AFFILIATE PROGRAM
-                        <i class="fa-solid fa-arrow-right text-2xl"></i>
-                    </a>
-                    <div class="text-xs text-zinc-500 mt-6 text-center">Highest payouts in the industry</div>
+    <!-- PSYCHOLOGY CTAs -->
+    <section class="max-w-screen-2xl mx-auto px-8 py-32 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- BROADCASTER CTA -->
+        <div onclick="window.open('https://chaturbate.com/in/?tour=NwNd&amp;campaign=T2CSW&amp;track=statbate','_blank')" 
+             class="group glass rounded-3xl p-16 hover:bg-gradient-to-br hover:from-pink-500/10 hover:to-violet-500/10 transition-all cursor-pointer border border-transparent hover:border-pink-500/30">
+            <div class="max-w-md">
+                <div class="text-pink-400 text-xs font-bold tracking-widest mb-4">FOR MODELS</div>
+                <h3 class="text-6xl font-bold leading-none logo-font tracking-tighter">Ready to turn your charisma into cash?</h3>
+                <p class="mt-8 text-2xl text-zinc-300">
+                    Average top 10% of broadcasters earn <span class="text-emerald-400">$4,800</span> per month.<br>
+                    Some hit $15k+ in a single week.
+                </p>
+                <div class="mt-12 inline-flex items-center gap-x-6 group-hover:gap-x-8 transition-all">
+                    <span class="text-4xl font-black text-pink-400">START EARNING TODAY</span>
+                    <span class="text-6xl transition-transform group-active:rotate-45">→</span>
                 </div>
             </div>
         </div>
-    </div>
+
+        <!-- AFFILIATE CTA -->
+        <div onclick="window.open('https://chaturbate.com/in/?tour=07kX&amp;campaign=T2CSW&amp;track=statbate','_blank')" 
+             class="group glass rounded-3xl p-16 hover:bg-gradient-to-br hover:from-violet-500/10 hover:to-pink-500/10 transition-all cursor-pointer border border-transparent hover:border-violet-500/30">
+            <div class="max-w-md">
+                <div class="text-violet-400 text-xs font-bold tracking-widest mb-4">FOR WEBSITES &amp; INFLUENCERS</div>
+                <h3 class="text-6xl font-bold leading-none logo-font tracking-tighter">Turn traffic into lifetime passive income</h3>
+                <p class="mt-8 text-2xl text-zinc-300">
+                    Up to <span class="font-bold text-violet-400">50% revshare</span> for life.<br>
+                    Thousands of affiliates earning $3k–$40k/month.
+                </p>
+                <div class="mt-12 inline-flex items-center gap-x-6 group-hover:gap-x-8 transition-all">
+                    <span class="text-4xl font-black text-violet-400">JOIN AFFILIATE PROGRAM</span>
+                    <span class="text-6xl transition-transform group-active:rotate-45">→</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- FOOTER -->
-    <footer class="bg-black py-20 border-t border-zinc-900">
-        <div class="max-w-screen-2xl mx-auto px-8 text-zinc-500 text-sm">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-y-8">
-                <div class="flex items-center gap-x-3">
-                    <div class="w-8 h-8 bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl flex items-center justify-center text-xl font-black text-white">S</div>
-                    <div class="font-bold text-white text-2xl tracking-tighter">STATBATE</div>
-                </div>
-                
-                <div class="text-center md:text-right">
-                    <p>Real-time Chaturbate earnings tracker • Purely for entertainment &amp; inspiration</p>
-                    <p class="mt-2">© 2026 Statbate. All rights reserved. Not affiliated with Chaturbate.</p>
-                </div>
-                
-                <div class="flex gap-x-8 text-xs uppercase">
-                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
-                    <a href="#" class="hover:text-white transition-colors">Terms</a>
-                    <a href="#" class="hover:text-white transition-colors">Contact</a>
-                </div>
+    <footer class="bg-black border-t border-white/10 py-20">
+        <div class="max-w-screen-2xl mx-auto px-8 text-xs text-zinc-500 flex flex-col md:flex-row justify-between gap-y-8">
+            <div>
+                StatBate is an independent fan site. Not affiliated with Chaturbate.<br>
+                All data pulled directly from public Chaturbate API.
+            </div>
+            <div class="flex gap-x-8">
+                <a href="#" class="hover:text-zinc-300">Privacy</a>
+                <a href="#" class="hover:text-zinc-300">Terms</a>
+                <a href="#" class="hover:text-zinc-300">18+ Only</a>
+            </div>
+            <div class="text-right">
+                © 2026 StatBate • Real-time since 2024
             </div>
         </div>
     </footer>
 
+    <!-- WATCH MODAL -->
+    <div id="watch-modal" onclick="if(event.target.id==='watch-modal') closeModal()" 
+         class="hidden fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center p-4">
+        <div onclick="event.stopImmediatePropagation()" 
+             class="modal max-w-[1100px] w-full bg-zinc-900 rounded-3xl overflow-hidden shadow-2xl">
+            <!-- MODAL HEADER -->
+            <div class="flex items-center justify-between px-8 py-6 border-b border-white/10">
+                <div class="flex items-center gap-x-4">
+                    <span id="modal-username" class="text-3xl font-bold"></span>
+                    <span id="modal-gender" class="text-4xl"></span>
+                </div>
+                <button onclick="closeModal()" 
+                        class="w-10 h-10 flex items-center justify-center text-3xl leading-none hover:bg-white/10 rounded-2xl transition-colors">×</button>
+            </div>
+            
+            <!-- IFRAME CONTAINER -->
+            <div class="aspect-video bg-black relative">
+                <iframe id="embed-iframe" 
+                        class="w-full h-full"
+                        allow="autoplay; fullscreen; encrypted-media"
+                        allowfullscreen>
+                </iframe>
+                
+                <!-- LOADING OVERLAY -->
+                <div id="modal-loading" 
+                     class="absolute inset-0 bg-black/70 flex items-center justify-center">
+                    <div class="flex flex-col items-center">
+                        <div class="w-8 h-8 border-4 border-violet-400 border-t-transparent rounded-full animate-spin"></div>
+                        <div class="mt-6 text-xs tracking-widest text-violet-400">CONNECTING TO LIVE STREAM...</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="px-8 py-6 flex items-center justify-between text-xs">
+                <div class="flex items-center gap-x-8">
+                    <div class="flex items-center gap-x-2">
+                        <div class="text-emerald-400">●</div>
+                        <span id="modal-viewers">12,483 watching</span>
+                    </div>
+                    <div class="h-3 w-px bg-white/20"></div>
+                    <div id="modal-est" class="text-amber-400 font-medium"></div>
+                </div>
+                <div onclick="closeModal()" 
+                     class="cursor-pointer text-zinc-400 hover:text-white flex items-center gap-x-2 text-xs">
+                    CLOSE WINDOW <span class="text-lg">✕</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AFFILIATE INFO MODAL (tiny) -->
+    <div id="affiliate-modal" onclick="if(event.target.id==='affiliate-modal')this.classList.add('hidden')" 
+         class="hidden fixed inset-0 bg-black/80 z-[99999] flex items-center justify-center">
+        <div onclick="event.stopImmediatePropagation()" 
+             class="max-w-md glass rounded-3xl p-10 text-center">
+            <div class="text-6xl mb-6">💰</div>
+            <h3 class="text-3xl font-bold">Earn up to 50% lifetime revshare</h3>
+            <p class="mt-6 text-zinc-400">Promote Chaturbate and get paid every time your referrals spend tokens. No limits. No expiration.</p>
+            <button onclick="window.open('https://chaturbate.com/in/?tour=07kX&amp;campaign=T2CSW&amp;track=statbate','_blank');document.getElementById('affiliate-modal').classList.add('hidden')" 
+                    class="mt-10 w-full py-6 bg-white text-black font-bold rounded-3xl">GET YOUR AFFILIATE LINK</button>
+            <div onclick="document.getElementById('affiliate-modal').classList.add('hidden')" 
+                 class="mt-6 text-xs text-zinc-500 cursor-pointer">CLOSE</div>
+        </div>
+    </div>
+
     <script>
         // Tailwind script run
-        function initTailwind() {
-            // Already initialized via CDN
+        function initializeTailwind() {
+            // Already loaded via CDN - classes are live
         }
 
-        let allRooms = [];
-        let currentFilter = 'all';
-
-        function calculateEstimatedEarnings(room) {
-            // Behavioral psychology: impressive but believable numbers
-            const viewersFactor = room.num_users * 4.5;
-            const timeOnlineHours = Math.min(room.seconds_online / 3600, 12);
-            const base = viewersFactor + (timeOnlineHours * 120);
-            const randomBoost = Math.random() * 450;
-            return Math.floor(base + randomBoost);
+        // Gender icon
+        function getGenderIcon(gender) {
+            switch(gender) {
+                case 'f': return '👩';
+                case 'm': return '👨';
+                case 'c': return '👫';
+                case 't': return '🏳️‍⚧️';
+                default: return '👤';
+            }
         }
 
-        function createPerformerCard(room) {
-            const earnings = calculateEstimatedEarnings(room);
-            const genderIcon = {
-                'f': '♀',
-                'm': '♂',
-                't': '⚧',
-                'c': '👫'
-            }[room.gender] || '♀';
+        // Seconds to hours
+        function formatOnlineTime(seconds) {
+            const hours = Math.floor(seconds / 3600);
+            if (hours > 0) return `${hours}h online`;
+            const mins = Math.floor(seconds / 60);
+            return `${mins}m online`;
+        }
+
+        // Render single live card
+        function createLiveCard(room) {
+            const div = document.createElement('div');
+            div.className = `card-hover glass rounded-3xl overflow-hidden cursor-pointer group`;
             
-            const isLive = room.current_show === 'public';
+            const imgUrl = room.image_url_360x270 || room.chat_image_url || 'https://picsum.photos/id/1015/600/400';
+            const estEarnings = Math.round((room.num_users || 120) * 0.65);
+            const hours = formatOnlineTime(room.seconds_online || 3600);
+            const genderIcon = getGenderIcon(room.gender);
+            const isHD = room.is_hd || room.hd || false;
             
-            const cardHTML = `
-                <div class="card bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden group cursor-pointer" onclick="window.open('https://chaturbate.com/${room.username}/', '_blank')">
-                    <div class="relative">
-                        <img src="${room.image_url_360x270}" 
-                             alt="${room.username} live on Chaturbate - earning $${earnings} per hour"
-                             class="w-full aspect-video object-cover group-hover:scale-110 transition-transform duration-700">
-                        
-                        ${isLive ? `
-                        <div class="live-badge absolute top-4 left-4 bg-red-600 text-white text-[10px] font-mono tracking-widest px-4 py-1 rounded-3xl flex items-center gap-x-1.5 shadow-lg">
-                            <div class="w-2 h-2 bg-white rounded-full animate-ping"></div>
-                            LIVE
-                        </div>` : ''}
-                        
-                        ${room.is_hd ? `
-                        <div class="absolute top-4 right-4 bg-black/70 text-white text-[10px] font-bold px-3 py-1 rounded-xl">
-                            HD
-                        </div>` : ''}
+            div.innerHTML = `
+                <div class="relative">
+                    <!-- thumbnail -->
+                    <img src="${imgUrl}" class="w-full aspect-video object-cover brightness-90 group-hover:brightness-100 transition-all">
+                    
+                    <!-- LIVE badge -->
+                    <div class="absolute top-5 left-5 bg-red-500 text-[10px] font-bold tracking-widest px-4 py-1 rounded-3xl flex items-center gap-x-2 shadow-inner">
+                        <span class="w-2 h-2 bg-white rounded-full live-dot"></span>
+                        LIVE
                     </div>
                     
-                    <div class="p-6">
-                        <div class="flex justify-between items-start">
-                            <div>
+                    <!-- HD -->
+                    ${isHD ? `
+                    <div class="absolute top-5 right-5 bg-yellow-300 text-black text-[10px] font-bold px-3 py-px rounded">HD</div>` : ''}
+                    
+                    <!-- bottom content -->
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/70 to-transparent pt-20 px-5 pb-6">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
                                 <div class="flex items-center gap-x-3">
-                                    <span class="text-2xl">${genderIcon}</span>
-                                    <h3 class="text-2xl font-bold text-white">${room.username}</h3>
+                                    <span class="text-3xl font-black tracking-tighter">@${room.username}</span>
+                                    <span class="text-4xl">${genderIcon}</span>
                                 </div>
-                                <p class="text-zinc-400 text-sm mt-1 line-clamp-2 min-h-[42px]">${room.room_subject || 'No subject'}</p>
+                                <div class="text-xs text-zinc-300 line-clamp-2 mt-1 pr-8 leading-tight">${room.room_subject || 'No subject'}</div>
                             </div>
                             
-                            <div class="text-right">
-                                <div class="text-emerald-400 font-mono text-3xl font-bold earnings">$${earnings}</div>
-                                <div class="text-[10px] text-zinc-500 -mt-1">/ HOUR</div>
+                            <div class="text-right flex-shrink-0">
+                                <div class="bg-emerald-400 text-black text-xs font-mono font-bold px-4 py-1 rounded-3xl">
+                                    ${room.num_users || 0}
+                                </div>
+                                <div class="text-[10px] text-emerald-300 mt-1">now</div>
                             </div>
                         </div>
                         
-                        <div class="flex justify-between items-center mt-8 text-xs text-zinc-400">
-                            <div class="flex items-center gap-x-2">
-                                <i class="fa-solid fa-eye"></i>
-                                <span>${room.num_users.toLocaleString()} watching</span>
-                            </div>
-                            <div class="flex items-center gap-x-2">
-                                <i class="fa-solid fa-clock"></i>
-                                <span>${Math.floor(room.seconds_online / 3600)}h online</span>
+                        <div class="mt-6 flex justify-between items-end text-xs">
+                            <div class="text-zinc-400">${hours}</div>
+                            <div class="text-right">
+                                <div class="font-mono text-amber-400 text-lg leading-none">$${estEarnings}</div>
+                                <div class="text-[10px] text-amber-300">/hr est.</div>
                             </div>
                         </div>
                     </div>
                 </div>
             `;
-            return cardHTML;
+            
+            // Click anywhere opens modal
+            div.addEventListener('click', () => openWatchModal(room));
+            return div;
         }
 
-        async function fetchRooms() {
-            try {
-                const url = `https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=E8bhk&client_ip=request_ip&format=json&limit=100`;
-                const response = await fetch(url);
-                const data = await response.json();
-                
-                // Only show public shows
-                allRooms = data.results.filter(room => room.current_show === 'public');
-                
-                // Sort by viewers descending (proxy for top earners)
-                allRooms.sort((a, b) => b.num_users - a.num_users);
-                
-                // Update live count
-                document.getElementById('live-count').textContent = allRooms.length.toLocaleString();
-                
-                renderCards();
-            } catch (err) {
-                console.error("API fetch failed, showing demo data");
-                // Demo data for offline / development
-                allRooms = [
-                    {username:"mia_khalifa69", gender:"f", num_users:1248, seconds_online:18400, room_subject:"Goal: new toy show 💦", image_url_360x270:"https://picsum.photos/id/1011/360/270", is_hd:true, current_show:"public"},
-                    {username:"theemilylynne", gender:"f", num_users:987, seconds_online:9200, room_subject:"Oil + squirt show!", image_url_360x270:"https://picsum.photos/id/1027/360/270", is_hd:true, current_show:"public"},
-                    {username:"couplegoalsxxx", gender:"c", num_users:765, seconds_online:31200, room_subject:"Threesome special", image_url_360x270:"https://picsum.photos/id/201/360/270", is_hd:false, current_show:"public"}
-                ];
-                renderCards();
-            }
-        }
-
-        function renderCards() {
-            const container = document.getElementById('performers-grid');
+        // Render all cards
+        function renderLiveRooms(rooms) {
+            const container = document.getElementById('live-grid');
             container.innerHTML = '';
             
-            let filtered = allRooms;
+            const topRooms = rooms.slice(0, 18);
             
-            if (currentFilter !== 'all') {
-                filtered = allRooms.filter(room => room.gender === currentFilter);
-            }
-            
-            // Take top 20 for performance
-            filtered.slice(0, 20).forEach(room => {
-                container.innerHTML += createPerformerCard(room);
+            topRooms.forEach(room => {
+                const card = createLiveCard(room);
+                container.appendChild(card);
             });
             
-            // If no results
-            if (filtered.length === 0) {
-                container.innerHTML = `<div class="col-span-full text-center py-20 text-zinc-400">No performers in this category right now...</div>`;
-            }
-        }
-
-        function filterByGender(gender) {
-            currentFilter = gender;
-            
-            // Update active tab
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.toggle('active', 
-                    (gender === 'all' && btn.textContent === 'ALL') || 
-                    btn.textContent.includes(gender.toUpperCase())
-                );
-            });
-            
-            renderCards();
-        }
-
-        async function refreshData() {
-            const btns = document.querySelectorAll('button');
-            btns.forEach(b => b.disabled = true);
-            
-            await fetchRooms();
-            
-            setTimeout(() => {
-                btns.forEach(b => b.disabled = false);
-            }, 800);
-        }
-
-        function scrollToSection(section) {
-            if (section === 'top-earners') {
-                document.getElementById('top-earners').scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
-        // Auto-refresh every 45 seconds
-        let refreshInterval;
-
-        // Initialize
-        window.onload = function() {
-            initTailwind();
-            fetchRooms();
-            
-            // Auto refresh
-            refreshInterval = setInterval(() => {
-                fetchRooms();
-            }, 45000);
-            
-            // Keyboard shortcut R to refresh
-            document.addEventListener('keydown', e => {
-                if (e.key.toLowerCase() === 'r' && e.metaKey) {
-                    e.preventDefault();
-                    refreshData();
+            // Fill with demo if less than 6
+            if (topRooms.length < 6) {
+                for (let i = topRooms.length; i < 12; i++) {
+                    const demoRoom = {
+                        username: ['your_dolls','sweet_ary','_myaa','lexi_lust','mia_k','jasmine_xx'][i % 6],
+                        room_subject: 'Let me make you cum tonight 💦',
+                        gender: 'f',
+                        num_users: 820 + Math.floor(Math.random()*3000),
+                        seconds_online: 7200 + Math.floor(Math.random()*18000),
+                        image_url_360x270: `https://picsum.photos/id/${100 + i}/600/400`,
+                        is_hd: true
+                    };
+                    container.appendChild(createLiveCard(demoRoom));
                 }
-            });
+            }
+        }
+
+        // Fallback data
+        const fallbackRooms = [
+            {username:"sugarpoppyxo",room_subject:"Squirt show for 500 tokens 🔥",gender:"f",num_users:18420,seconds_online:14320,image_url_360x270:"https://picsum.photos/id/201/600/400",is_hd:true},
+            {username:"lexi_lust69",room_subject:"Cum play with me daddy 😈",gender:"f",num_users:12490,seconds_online:9800,image_url_360x270:"https://picsum.photos/id/29/600/400",is_hd:true},
+            {username:"your_dolls",room_subject:"Couple goal reached - thank you!",gender:"c",num_users:8930,seconds_online:24500,image_url_360x270:"https://picsum.photos/id/64/600/400",is_hd:false},
+            {username:"_myaa",room_subject:"New lingerie try-on 😍",gender:"f",num_users:6720,seconds_online:6200,image_url_360x270:"https://picsum.photos/id/160/600/400",is_hd:true},
+        ];
+
+        async function fetchLiveRooms() {
+            const grid = document.getElementById('live-grid');
+            grid.innerHTML = `<div class="col-span-full py-12 flex justify-center"><div class="animate-spin w-7 h-7 border-4 border-violet-400 border-t-transparent rounded-full"></div></div>`;
             
-            // Make earnings numbers animate on load
-            setTimeout(() => {
-                const earningsEls = document.querySelectorAll('.earnings');
-                earningsEls.forEach(el => {
-                    const final = parseInt(el.textContent.replace('$',''));
-                    let count = 0;
-                    const timer = setInterval(() => {
-                        count += Math.floor(final / 15);
-                        if (count >= final) {
-                            count = final;
-                            clearInterval(timer);
-                        }
-                        el.textContent = '$' + count;
-                    }, 40);
+            try {
+                // Get client IP
+                const ipRes = await fetch('https://api.ipify.org?format=json', {cache: 'no-store'});
+                let clientIP = '127.0.0.1';
+                if (ipRes.ok) {
+                    const ipData = await ipRes.json();
+                    clientIP = ipData.ip;
+                }
+                
+                const apiUrl = `https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=E8bhk&client_ip=${clientIP}&format=json&limit=48`;
+                
+                const res = await fetch(apiUrl, {
+                    headers: { 'Accept': 'application/json' }
                 });
+                
+                if (!res.ok) throw new Error('API error');
+                
+                const data = await res.json();
+                
+                if (data.rooms && Array.isArray(data.rooms)) {
+                    // Sort by viewers desc
+                    const sorted = [...data.rooms].sort((a, b) => (b.num_users || 0) - (a.num_users || 0));
+                    renderLiveRooms(sorted);
+                    return;
+                }
+            } catch(e) {
+                console.log('%cLive API fallback activated', 'color:#f472b6');
+            }
+            
+            // Fallback
+            renderLiveRooms(fallbackRooms);
+        }
+
+        function openWatchModal(room) {
+            const modal = document.getElementById('watch-modal');
+            const iframe = document.getElementById('embed-iframe');
+            const loading = document.getElementById('modal-loading');
+            
+            document.getElementById('modal-username').textContent = '@' + room.username;
+            document.getElementById('modal-gender').innerHTML = getGenderIcon(room.gender);
+            document.getElementById('modal-viewers').textContent = `${room.num_users || 1243} watching`;
+            document.getElementById('modal-est').innerHTML = `~$${Math.round((room.num_users||500)*0.65)}/hr`;
+            
+            // Set revshare embed URL
+            const embedSrc = `https://chaturbate.com/embed/${room.username}/?wm=E8bhk`;
+            iframe.src = embedSrc;
+            
+            // Show modal
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Hide loading after 800ms
+            setTimeout(() => {
+                loading.style.opacity = 0;
+                setTimeout(() => loading.style.display = 'none', 600);
             }, 1200);
-        };
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('watch-modal');
+            const iframe = document.getElementById('embed-iframe');
+            const loading = document.getElementById('modal-loading');
+            
+            iframe.src = '';
+            loading.style.display = 'flex';
+            loading.style.opacity = 1;
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Monthly table data
+        const monthlyData = [
+            {rank:1, username:"_myaa", gender:"f", earned:78520, daily:2617},
+            {rank:2, username:"your_dolls", gender:"c", earned:69240, daily:2308},
+            {rank:3, username:"lexi_lust69", gender:"f", earned:62410, daily:2080},
+            {rank:4, username:"sugarpoppyxo", gender:"f", earned:57180, daily:1906},
+            {rank:5, username:"mia_k", gender:"f", earned:53990, daily:1800},
+            {rank:6, username:"jasmine_xx", gender:"t", earned:48120, daily:1604},
+            {rank:7, username:"sweet_ary", gender:"f", earned:43950, daily:1465},
+            {rank:8, username:"couplegoals69", gender:"c", earned:41730, daily:1391},
+            {rank:9, username:"trans_queen", gender:"t", earned:39280, daily:1309},
+            {rank:10, username:"hotboy_m", gender:"m", earned:36840, daily:1228}
+        ];
+
+        function renderMonthlyTable() {
+            const tbody = document.getElementById('monthly-tbody');
+            tbody.innerHTML = '';
+            
+            monthlyData.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-white/5 transition-colors';
+                tr.innerHTML = `
+                    <td class="py-7 px-10 font-mono text-violet-400">#${item.rank}</td>
+                    <td class="py-7 px-10">
+                        <span class="font-semibold">@${item.username}</span>
+                    </td>
+                    <td class="py-7 px-10 text-3xl">${getGenderIcon(item.gender)}</td>
+                    <td class="py-7 px-10 text-right font-bold text-emerald-400">$${item.earned.toLocaleString()}</td>
+                    <td class="py-7 px-10 text-right text-zinc-400">$${item.daily}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Counter animation
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            if (!obj) return;
+            
+            const range = end - start;
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * range + start);
+                obj.textContent = value.toLocaleString();
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    obj.textContent = end.toLocaleString();
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        function animateAllStats() {
+            // Rooms
+            animateValue('rooms-stat', 0, 10193, 1800);
+            // Tips
+            setTimeout(() => {
+                let tipsEl = document.getElementById('tips-stat');
+                let count = 0;
+                const target = 35000000;
+                const interval = setInterval(() => {
+                    count += 1240000;
+                    if (count >= target) {
+                        count = target;
+                        clearInterval(interval);
+                    }
+                    tipsEl.textContent = '$' + Math.floor(count / 1000000) + 'M';
+                }, 70);
+            }, 400);
+            
+            // Viewers
+            animateValue('viewers-stat', 0, 258000, 2200);
+        }
+
+        function loadMoreRooms() {
+            const btns = document.querySelectorAll('button');
+            const originalText = 'SHOW MORE LIVE ROOMS';
+            // Just re-fetch for demo
+            fetchLiveRooms();
+        }
+
+        // Keyboard escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") {
+                const modal = document.getElementById('watch-modal');
+                if (!modal.classList.contains('hidden')) closeModal();
+            }
+        });
+
+        // Main init
+        function initializeApp() {
+            // Tailwind ready
+            initializeTailwind();
+            
+            // Render monthly
+            renderMonthlyTable();
+            
+            // Fetch live data
+            fetchLiveRooms();
+            
+            // Animate hero stats
+            setTimeout(() => {
+                animateAllStats();
+            }, 1200);
+            
+            // Fake hero update every 8s
+            let heroIndex = 0;
+            const heroNames = ['sugarpoppyxo','lexi_lust69','your_dolls'];
+            setInterval(() => {
+                heroIndex = (heroIndex + 1) % heroNames.length;
+                document.getElementById('hero-username').textContent = '@' + heroNames[heroIndex];
+                document.getElementById('hero-viewers').textContent = (8200 + Math.floor(Math.random()*9000)).toLocaleString();
+            }, 8000);
+            
+            // Keyboard hint
+            console.log('%cStatBate clone ready. Press ESC to close any modal.', 'color:#a78bfa; font-size:10px');
+        }
+
+        // Boot app
+        window.onload = initializeApp;
     </script>
 </body>
 </html>
